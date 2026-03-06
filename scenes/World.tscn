@@ -1,3 +1,9 @@
 [gd_scene format=3 uid="uid://dlesu4bgsm3t2"]
 
+[ext_resource type="Script" uid="uid://btoul6gvpauct" path="res://scripts/World.gd" id="1_32lhk"]
+[ext_resource type="PackedScene" uid="uid://c73i3h3phd0jr" path="res://scenes/Unit.tscn" id="2_7g83o"]
+
 [node name="World" type="Node2D" unique_id=1984872172]
+script = ExtResource("1_32lhk")
+
+[node name="Node2D" parent="." unique_id=546576393 instance=ExtResource("2_7g83o")]
