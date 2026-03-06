@@ -1,27 +1,39 @@
 extends CharacterBody2D
 
-# This dictionary will hold the stats once they are loaded
 var unit_stats = {}
+var target_position: Vector2 = Vector2.ZERO
+var is_moving: bool = false
+
+func _ready():
+	# Essential for detecting clicks on the unit later
+	input_pickable = true
+	# Start at current position so units don't rush to (0,0) at spawn
+	target_position = global_position 
+	load_unit_data("res://data/units/soldier.cfg")
 
 func load_unit_data(path: String):
 	var config = ConfigFile.new()
 	var err = config.load(path)
-	
 	if err == OK:
-		# Pull stats from the [stats] section of your .cfg
-		unit_stats["name"] = config.get_value("stats", "name", "Unknown Unit")
-		unit_stats["hp"] = config.get_value("stats", "hp", 100)
-		unit_stats["speed"] = config.get_value("stats", "speed", 200)
-		unit_stats["attack"] = config.get_value("stats", "attack_power", 10)
-		
-		# Apply the placeholder visual
-		var sprite_path = config.get_value("visuals", "sprite_path", "res://icon.svg")
-		$Sprite2D.texture = load(sprite_path)
-		
-		print("Successfully loaded: ", unit_stats["name"])
-	else:
-		print("Error: Could not find the data file at ", path)
+		unit_stats["name"] = config.get_value("stats", "name", "Unit")
+		# Pull speed from your .cfg file
+		unit_stats["speed"] = config.get_value("stats", "speed", 150)
+		$Sprite2D.texture = load(config.get_value("visuals", "sprite_path", "res://icon.svg"))
 
-func _ready():
-	# For now, we manually tell it to load the soldier data you made
-	load_unit_data("res://data/units/soldier.cfg")
+func _physics_process(_delta):
+	if is_moving:
+		var direction = global_position.direction_to(target_position)
+		var distance = global_position.distance_to(target_position)
+		
+		# Move until we are within 5 pixels of the target
+		if distance > 5:
+			velocity = direction * unit_stats["speed"]
+			move_and_slide()
+		else:
+			is_moving = false
+			velocity = Vector2.ZERO
+
+# This is the "Command" function the World script will call
+func move_to(goal: Vector2):
+	target_position = goal
+	is_moving = true
