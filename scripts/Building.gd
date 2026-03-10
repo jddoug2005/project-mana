@@ -1,18 +1,25 @@
+# res://scripts/Building.gd
 extends StaticBody2D
 
 @onready var unit_scene = preload("res://scenes/Unit.tscn")
 @onready var spawn_point = $SpawnPoint
 
+# --- Configuration ---
 var is_preview_mode: bool = true
+var building_grid_size: int = 2 # Set to 2 for a 64x64 building
 
 func _ready():
 	if is_preview_mode:
 		modulate.a = 0.5
+		# Disable collision while ghosting so it doesn't push units
 		$CollisionShape2D.disabled = true
+		# Ensure it appears ABOVE the TileMap (Z-Index)
+		z_index = 1
 
 func _process(_delta):
 	if is_preview_mode:
-		global_position = Global.snap_to_grid(get_global_mouse_position())
+		# Ghost follows mouse, snapping to the 2x2 grid intersections
+		global_position = Global.snap_to_grid(get_global_mouse_position(), building_grid_size)
 
 func _input(event):
 	if is_preview_mode and event is InputEventMouseButton:
@@ -22,8 +29,10 @@ func _input(event):
 func place_building():
 	is_preview_mode = false
 	modulate.a = 1.0 
-	$CollisionShape2D.disabled = false 
+	$CollisionShape2D.disabled = false
+	print("Building established at: ", global_position)
 
+# --- Unit Production ---
 func _input_event(_viewport, event, _shape_idx):
 	if not is_preview_mode and event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
@@ -33,5 +42,9 @@ func train_unit():
 	if Global.mana >= Global.SOLDIER_COST:
 		Global.mana -= Global.SOLDIER_COST
 		var new_unit = unit_scene.instantiate()
+		
+		# Spawn at the Marker2D location
 		new_unit.global_position = spawn_point.global_position
 		get_parent().add_child(new_unit)
+	else:
+		print("Insufficient Mana for Soldier.")

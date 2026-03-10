@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://b0rxttlatohkk" path="res://scripts/Unit.gd" id="1_h85lg"]
 [ext_resource type="Texture2D" uid="uid://bsxwsdqiokc10" path="res://icon.svg" id="2_fqlnf"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_aa524"]
-size = Vector2(129, 127)
+[sub_resource type="CircleShape2D" id="CircleShape2D_fqlnf"]
+radius = 18.0
 
 [node name="Node2D" type="Node2D" unique_id=546576393]
 
@@ -12,8 +12,9 @@ size = Vector2(129, 127)
 script = ExtResource("1_h85lg")
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D" unique_id=1967155794]
+scale = Vector2(0.15, 0.15)
 texture = ExtResource("2_fqlnf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=705881009]
-position = Vector2(-0.5, -0.5)
-shape = SubResource("RectangleShape2D_aa524")
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CircleShape2D_fqlnf")
