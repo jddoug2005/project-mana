@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://ft310fk2f5rc"]
+
+[ext_resource type="Script" uid="uid://bpty8vllw4wwo" path="res://Building.gd" id="1_v8dyh"]
+[ext_resource type="Texture2D" uid="uid://bsxwsdqiokc10" path="res://icon.svg" id="2_pe7t1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ah46h"]
+size = Vector2(30, 30)
+
+[node name="Building" type="StaticBody2D" unique_id=1161698534]
+input_pickable = true
+script = ExtResource("1_v8dyh")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=750672745]
+self_modulate = Color(0.47608662, 0.08288445, 0.59525186, 1)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_pe7t1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=306881380]
+shape = SubResource("RectangleShape2D_ah46h")
+
+[node name="SpawnPoint" type="Marker2D" parent="." unique_id=940085454]
+position = Vector2(8, 0)
