@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bsxwsdqiokc10" path="res://icon.svg" id="2_ogyss"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ah46h"]
-size = Vector2(30, 30)
+size = Vector2(60, 60)
 
 [node name="Building" type="StaticBody2D" unique_id=1161698534]
 input_pickable = true
@@ -12,7 +12,7 @@ script = ExtResource("1_mg2bo")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=750672745]
 self_modulate = Color(0.47608662, 0.08288445, 0.59525186, 1)
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_ogyss")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=306881380]
