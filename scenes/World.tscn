@@ -2,8 +2,18 @@
 
 [ext_resource type="Script" uid="uid://btoul6gvpauct" path="res://scripts/World.gd" id="1_32lhk"]
 [ext_resource type="PackedScene" uid="uid://c73i3h3phd0jr" path="res://scenes/Unit.tscn" id="2_7g83o"]
+[ext_resource type="Script" uid="uid://bhcmdkhyravoo" path="res://scenes/HUD.gd" id="3_7g83o"]
 
 [node name="World" type="Node2D" unique_id=1984872172]
 script = ExtResource("1_32lhk")
 
 [node name="Node2D" parent="." unique_id=546576393 instance=ExtResource("2_7g83o")]
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1480212381]
+script = ExtResource("3_7g83o")
+
+[node name="Label" type="Label" parent="HUD" unique_id=1231974086]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 24
+text = "Mana: 0 | Gold: 0"

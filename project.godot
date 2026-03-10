@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="projectmana"
-run/main_scene="uid://c73i3h3phd0jr"
+run/main_scene="uid://dlesu4bgsm3t2"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Global="*uid://bg5xd3wtr3o47"
 
 [physics]
 
