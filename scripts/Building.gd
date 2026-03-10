@@ -4,7 +4,7 @@ extends StaticBody2D
 @onready var spawn_point = $SpawnPoint
 
 var is_preview_mode: bool = true
-var building_grid_size: int = 2 # 2x2 building (64x64)
+var building_grid_size: int = 2 
 
 func _ready():
 	if is_preview_mode:
@@ -25,8 +25,6 @@ func place_building():
 	is_preview_mode = false
 	modulate.a = 1.0 
 	$CollisionShape2D.disabled = false
-	
-	# Update the navigation grid in the world so units walk around this building
 	if get_parent().has_method("update_grid_for_building"):
 		get_parent().update_grid_for_building(global_position, building_grid_size)
 

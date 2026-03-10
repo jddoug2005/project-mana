@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://e3uma3l4oawt"]
+
+[ext_resource type="Script" uid="uid://b0rxttlatohkk" path="res://scripts/Unit.gd" id="1_55jtl"]
+[ext_resource type="Texture2D" uid="uid://bsxwsdqiokc10" path="res://icon.svg" id="2_mpr68"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fqlnf"]
+radius = 18.0
+
+[node name="Node2D" type="Node2D" unique_id=546576393]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1569669649 groups=["units"]]
+script = ExtResource("1_55jtl")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D" unique_id=1967155794]
+self_modulate = Color(0.7625388, 0.31238636, 0.19787493, 1)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_mpr68")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=705881009]
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CircleShape2D_fqlnf")
+
+[node name="Line2D" type="Line2D" parent="." unique_id=303350234]
+width = 2.0
+default_color = Color(0.003921569, 1, 1, 1)
+antialiased = true
