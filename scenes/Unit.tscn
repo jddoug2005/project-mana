@@ -19,7 +19,11 @@ texture = ExtResource("2_fqlnf")
 scale = Vector2(0.5, 0.5)
 shape = SubResource("CircleShape2D_fqlnf")
 
-[node name="Line2D" type="Line2D" parent="." unique_id=303350234]
+[node name="Line2D" type="Line2D" parent="CharacterBody2D" unique_id=303350234]
 width = 2.0
 default_color = Color(0.003921569, 1, 1, 1)
 antialiased = true
+
+[node name="HealthBar" type="TextureProgressBar" parent="CharacterBody2D" unique_id=797840837]
+offset_right = 40.0
+offset_bottom = 40.0
